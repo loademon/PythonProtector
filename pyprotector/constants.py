@@ -29,7 +29,7 @@ class UserInfo:
     PC_NAME: Final[str] = os.getenv("COMPUTERNAME")
     IP: Final[str] = getIPAddress()
     HWID: Final[str] = (
-        subprocess.check_output("wmic csproduct get uuid")
+        subprocess.check_output("wmic csproduct get uuid", shell=True)
         .decode()
         .split("\n")[1]
         .strip()

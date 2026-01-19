@@ -177,24 +177,24 @@ class AntiVM(Module):
             if self.exit:
                 os._exit(1)
 
-        if UserInfo.GPU in self.GPUS:
-            self.logger.info(f"Blacklisted GPU: {UserInfo.GPU}")
-            if self.report:
-                self.webhook.send(f"Blacklisted GPU: `{UserInfo.GPU}`", self.name)
-                self.event.dispatch(
-                    "blacklisted_gpu",
-                    "Blacklisted GPU Detected",
-                    self.name,
-                    gpu=UserInfo.GPU,
-                )
-                self.event.dispatch(
-                    "pyprotector_detect",
-                    "Blacklisted GPU Detected",
-                    self.name,
-                    gpu=UserInfo.GPU,
-                )
-            if self.exit:
-                os._exit(1)
+        # if UserInfo.GPU in self.GPUS:
+        #     self.logger.info(f"Blacklisted GPU: {UserInfo.GPU}")
+        #     if self.report:
+        #         self.webhook.send(f"Blacklisted GPU: `{UserInfo.GPU}`", self.name)
+        #         self.event.dispatch(
+        #             "blacklisted_gpu",
+        #             "Blacklisted GPU Detected",
+        #             self.name,
+        #             gpu=UserInfo.GPU,
+        #         )
+        #         self.event.dispatch(
+        #             "pyprotector_detect",
+        #             "Blacklisted GPU Detected",
+        #             self.name,
+        #             gpu=UserInfo.GPU,
+        #         )
+        #     if self.exit:
+        #         os._exit(1)
 
     def CheckVirtualEnv(self) -> None:
         """
@@ -358,7 +358,7 @@ class AntiVM(Module):
     def StartChecks(self) -> None:
         if self.report:
             self.logger.info("Starting VM Checks")
-        self.CheckVirtualEnv()
+        # self.CheckVirtualEnv() #temp disabled
         self.CheckRegistry()
         self.CheckMacAddress()
         self.CheckScreenSize()
